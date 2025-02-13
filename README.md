@@ -7,7 +7,7 @@ A simple fusion of these two attention components forms a robust volume of multi
 To the best of our knowledge, it is the first time that a channel-spatial residual mechanism is proposed to reinforce the attentive information.
 Experimental results on benchmark datasets for image recognition have authenticated the prominent performance of MRAP in comparison with other attention modules.
 
-<u>**An example for training MRAP on Stanford Dogs:**</u>
+<u>**An example for training an MRAP-based model on Stanford Dogs:**</u>
 
 
 Traning and testing MAFAttention($\mathrm{MAF}_\mathrm{C}^{\mathrm{avg\\_std}}$) on ImageNet
