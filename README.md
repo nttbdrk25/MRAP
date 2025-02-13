@@ -8,7 +8,7 @@ To the best of our knowledge, it is the first time that a channel-spatial residu
 Experimental results on benchmark datasets for image recognition have authenticated the prominent performance of MRAP in comparison with other attention modules.
 Particularly, MRAP has improved the performance of concerning networks up to $\sim$7\% on ImageNet-100 dataset without increasing the computational complexity.
 
-<u>**An example for training MRAP models on ImageNet100:**</u>
+<u>**An example for training MRAP models on ImageNet-100:**</u>
 
 
 Traning and testing MAFAttention($\mathrm{MAF}_\mathrm{C}^{\mathrm{avg\\_std}}$) on ImageNet
