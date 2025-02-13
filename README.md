@@ -6,7 +6,6 @@ To deal with these problems, an efficient attention module for lightweight netwo
 A simple fusion of these two attention components forms a robust volume of multiple residual attentive patterns (named MRAP).
 To the best of our knowledge, it is the first time that a channel-spatial residual mechanism is proposed to reinforce the attentive information.
 Experimental results on benchmark datasets for image recognition have authenticated the prominent performance of MRAP in comparison with other attention modules.
-Particularly, MRAP has improved the performance of concerning networks up to $\sim$7\% on ImageNet-100 dataset without increasing the computational complexity.
 
 <u>**An example for training MRAP models on ImageNet-100:**</u>
 
