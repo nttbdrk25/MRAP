@@ -15,11 +15,11 @@ The default path of dataset: '../../../datasets/Stanford Dogs'.
 
 For tranining, run command:
 ```
-$ python MRAP.py
+$ python MRAP_Dogs.py
 ```
 For validating, run command:
 ```
-$ python MRAP.py --evaluate
+$ python MRAP_Dogs.py --evaluate
 ```
 
 Note: For a validation instance of MRAP-based models, the trained model of MRAP-based MobileNetV3 (by default) on Stanford Dogs at /checkpoints/StanfordDogs/model_best.pth
