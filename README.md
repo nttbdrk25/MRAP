@@ -10,7 +10,7 @@ Experimental results on benchmark datasets for image recognition have authentica
 <u>**An example for training MRAP-based models on Stanford Dogs:**</u>
 
 
-Traning and testing MRAP$'^\mathrm{avg\\_std}'$ on Stanford Dogs
+Traning and testing MRAP$'\mathrm{avg\\_std}'$ on Stanford Dogs
 in the default path of dataset: '../../../datasets/Stanford Dogs'
 
 For tranining, run command:
