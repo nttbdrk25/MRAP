@@ -24,7 +24,7 @@ $ python MRAP.py --evaluate
 
 Note: For a validation instance of MRAP-based models, the trained model of MRAP-based MobileNetV3 (by default) on Stanford Dogs at /checkpoints/StanfordDogs/model_best.pth
 
-**Related citations:**
+**Related citation(s):**
 
 If you use any materials, please cite the following relevant works.
 
