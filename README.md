@@ -22,7 +22,7 @@ For validating, run command:
 $ python MRAP.py --evaluate
 ```
 
-Note: For a validation instance of MRAP-based models, download the trained model of MRAP-based MobileNetV3 in Stanford Dogs: [Click here](https://drive.google.com/file/d/1YrQTfAk9QYIBcf_l8aAtKG87XxDtVbSE/view?usp=drive_link). And then locate the downloaded file at ./runs/MAFCV1_
+Note: For a validation instance of MRAP-based models, the trained model of MRAP-based MobileNetV3 (by default) on Stanford Dogs at /checkpoints/StanfordDogs/model_best.pth
 
 **Related citations:**
 
