@@ -7,24 +7,24 @@ A simple fusion of these two attention components forms a robust volume of multi
 To the best of our knowledge, it is the first time that a channel-spatial residual mechanism is proposed to reinforce the attentive information.
 Experimental results on benchmark datasets for image recognition have authenticated the prominent performance of MRAP in comparison with other attention modules.
 
-<u>**An example for training an MRAP-based model on Stanford Dogs:**</u>
+<u>**An example for training MRAP-based models on Stanford Dogs:**</u>
 
 
-Traning and testing MRAP$^{avg\_std}$ on ImageNet
-in the default path of dataset: '../../../datasets/ImageNet'
+Traning and testing MRAP$^{avg\_std}$ on Stanford Dogs
+in the default path of dataset: '../../../datasets/Stanford Dogs'
 
 For tranining, run command:
 ```
-$ python MAFAttention_main.py -a MAFCV1
+$ python MRAP.py -a MRAPV1
 ```
 For validating, run command:
 ```
-$ python MAFAttention_main.py -a MAFCV1 -e
+$ python MRAP.py -a MRAPV1 -e
 ```
 
-Note: MAFCV1 is for MobileNetV1+MAFC; MAFCV2 is for MobileNetV2+MAFC, and MAFCV3 is for MobileNetV3+MAFC
+Note: MRAPV1 is for MobileNetV1+MRAP; MRAPV2 is for MobileNetV2+MRAP, and MRAPV3 is for MobileNetV3+MRAP
 
-Note: For a validation instance of MAF-based models, download the trained model of MAFCV1 in ImageNet-1k: [Click here](https://drive.google.com/file/d/1YrQTfAk9QYIBcf_l8aAtKG87XxDtVbSE/view?usp=drive_link). And then locate the downloaded file at ./runs/MAFCV1_
+Note: For a validation instance of MRAP-based models, download the trained model of MRAPV1 in Stanford Dogs: [Click here](https://drive.google.com/file/d/1YrQTfAk9QYIBcf_l8aAtKG87XxDtVbSE/view?usp=drive_link). And then locate the downloaded file at ./runs/MAFCV1_
 
 **Related citations:**
 
