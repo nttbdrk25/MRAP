@@ -11,7 +11,7 @@ Experimental results on benchmark datasets for image recognition have authentica
 
 
 Traning and testing MRAP$^\mathrm{avg\\_std}' on Stanford Dogs for MobileNetV3 by default. Please change the code in the MRAP.py file for the favorable networks.
-in the default path of dataset: '../../../datasets/Stanford Dogs'
+The default path of dataset: '../../../datasets/Stanford Dogs'.
 
 For tranining, run command:
 ```
@@ -19,12 +19,10 @@ $ python MRAP.py
 ```
 For validating, run command:
 ```
-$ python MRAP.py -a MRAPV1 -e
+$ python MRAP.py --evaluate
 ```
 
-Note: MRAPV1 is for MobileNetV1+MRAP; MRAPV2 is for MobileNetV2+MRAP, and MRAPV3 is for MobileNetV3+MRAP
-
-Note: For a validation instance of MRAP-based models, download the trained model of MRAPV1 in Stanford Dogs: [Click here](https://drive.google.com/file/d/1YrQTfAk9QYIBcf_l8aAtKG87XxDtVbSE/view?usp=drive_link). And then locate the downloaded file at ./runs/MAFCV1_
+Note: For a validation instance of MRAP-based models, download the trained model of MRAP-based MobileNetV3 in Stanford Dogs: [Click here](https://drive.google.com/file/d/1YrQTfAk9QYIBcf_l8aAtKG87XxDtVbSE/view?usp=drive_link). And then locate the downloaded file at ./runs/MAFCV1_
 
 **Related citations:**
 
