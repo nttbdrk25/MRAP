@@ -10,7 +10,7 @@ Experimental results on benchmark datasets for image recognition have authentica
 <u>**An example for training an MRAP-based model on Stanford Dogs:**</u>
 
 
-Traning and testing MRAP($avg\_std$) on ImageNet
+Traning and testing MRAP$^{avg\_std}$ on ImageNet
 in the default path of dataset: '../../../datasets/ImageNet'
 
 For tranining, run command:
