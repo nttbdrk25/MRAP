@@ -66,9 +66,7 @@ def get_statistic_feature(x, pool_type=None):
     squeeze_spatial = None        
     if pool_type=='avg':
         squeeze_channel = F.avg_pool2d( x, (x.size(2), x.size(3)), stride=(x.size(2), x.size(3)))
-        #print('vao1: ' + str(x.size()))
         squeeze_spatial = torch.mean(x,1).unsqueeze(1)            
-        #print('vao2: ' + str(squeeze_spatial.size()))
     if pool_type=='max':
         squeeze_channel = F.max_pool2d( x, (x.size(2), x.size(3)), stride=(x.size(2), x.size(3)))                
         squeeze_spatial = torch.max(x,1)[0].unsqueeze(1)
@@ -77,85 +75,12 @@ def get_statistic_feature(x, pool_type=None):
         stdf = stdf.reshape(stdf.size()[0],stdf.size()[1],1,1)#resize to be (,1,1) the same as out put of AdaptiveAvgPool2d , i.e., self.squeeze(residual)
         squeeze_channel = stdf
         squeeze_spatial = torch.std(x,1).unsqueeze(1)
-    # elif pool_type=='max':
-    #     squeeze_channel = F.max_pool2d( x, (x.size(2), x.size(3)), stride=(x.size(2), x.size(3)))                
-    #     squeeze_spatial = torch.max(x,1)[0].unsqueeze(1)
-    # elif pool_type=='lp':
-    #     squeeze_channel = F.lp_pool2d( x, 2, (x.size(2), x.size(3)), stride=(x.size(2), x.size(3)))                
-    #     squeeze_spatial = torch.lp_pool2d(x,1)[0].unsqueeze(1)
-    # elif pool_type=='lse':
-    #     # LSE pool only
-    #     squeeze_channel = logsumexp_2d(x) 
-    #     squeeze_spatial = None #not yet installed
-    # elif pool_type=='std':                
-    #     stdf = torch.std(x,(2,3),unbiased=True)#compute standard deviation
-    #     stdf = stdf.reshape(stdf.size()[0],stdf.size()[1],1,1)#resize to be (,1,1) the same as out put of AdaptiveAvgPool2d , i.e., self.squeeze(residual)
-    #     squeeze_channel = stdf
-    #     squeeze_spatial = torch.std(x,1).unsqueeze(1)
     return squeeze_channel, squeeze_spatial
 def topk_channel(tensor_x,num):
-    #print('vao_top-1: '+str(tensor_x.size()))
     tensor_x = tensor_x.squeeze(-1).transpose(-1, -2)    
-    #print('vao_top0: '+str(tensor_x.size()))
-    #toprate,indices1 = torch.topk(tensor_x,int(in_channels*rate))#get top of a half of x
     toprate,indices1 = torch.topk(tensor_x,num)#get top of a half of x
     toprate = toprate.transpose(-1, -2).unsqueeze(-1)
-    #print('vao_top11: '+str(indices1.size()))
-    #print('vao_top1: '+str(tensor_x.size()))
     return toprate
-
-def topk_channel_unique(tensor_x,num,indices=None):
-
-    if indices == None:
-        #print('vao_top-1: '+str(tensor_x.size()))
-        tensor_x = tensor_x.squeeze(-1).transpose(-1, -2)
-        #print('vao_top0: '+str(tensor_x.size()))
-        #toprate,indices1 = torch.topk(tensor_x,int(in_channels*rate))#get top of a half of x
-        toprate,indices_out = torch.topk(tensor_x,num)#get top of a half of x
-        toprate = toprate.transpose(-1, -2).unsqueeze(-1)
-        #print('vao_top11: '+str(indices_out.size()))
-        #print('vao_top1: '+str(tensor_x.size()))
-        return toprate, indices_out
-    else:
-        #remove items of tensor_x with its indices in indices
-        tensor_ori = tensor_x
-        print('vao_top-1: '+str(tensor_x.size()))
-        tensor_x = tensor_x.squeeze(-1).transpose(-1, -2)    
-        print('vao_top0: '+ str(tensor_x.size()))
-        tensor_x = tensor_x.squeeze(1)
-        mask = torch.ones(tensor_x.size(), dtype=torch.bool)
-        #print('vao_mask: '+str(mask.size()))
-        indices=indices.squeeze(1)
-        print('vao_tensor_x: '+str(tensor_x.size()))
-        print(indices)
-        print('vao_top111: '+str(indices.size()))
-        
-        mask[:,indices] = False
-        print('vao_mask1: ' +str(mask.size()))
-        print(mask)
-        #tensor_x = tensor_x[torch.arange(tensor_x.size(0)),mask]
-        print('vao_tensor_x: '+str(tensor_x.size()))
-        print(tensor_x)
-        tensor_x_removed = tensor_x[mask]
-        print('vao_tensor_x1: '+str(tensor_x_removed.size()))
-        tensor_x_removed = tensor_x_removed.reshape(mask.size(0),mask.size(1)-indices.size(1))
-        print('vao_tensor_x: ')
-        print(tensor_x_removed)
-        print('vao_toprate1: '+str(tensor_x_removed.size()))
-        tensor_x_removed =  tensor_x_removed.unsqueeze(2).unsqueeze(2)
-        print('vao_toprate1: '+str(tensor_x_removed.size()))
-        print('vao_toprate2: ')
-        print(tensor_x_removed)
-        
-        tensor_x_removed = tensor_x_removed.squeeze(-1).transpose(-1, -2)
-        toprate,indices_unique = torch.topk(tensor_x_removed,num)
-        
-        print('vao_idx0: ' + str(tensor_ori.size()))
-        print('vao_idx1: ' + str(toprate.size()))
-        idx = (tensor_ori == toprate).nonzero(as_tuple=True)
-        print('vao_idx: ' + str(idx.size()))
-        
-        return toprate, indices_unique
 
 class ChannelGate(nn.Module):
     def __init__(self, in_channels, reduction_ratio=16,pool_types=['avg','max'],rate=None):
@@ -182,10 +107,8 @@ class ChannelGate(nn.Module):
         self.in_channels = in_channels
         if len(self.pool_types)==3:
             self.spatialConv = BasicConv(3, 1, 7, stride=1, padding=3, relu=False)
-            #self.spatialConv = BasicConv(3, 1, 3, stride=1, padding=1, relu=False) kernel3x3 not good
         if len(self.pool_types)==2:
             self.spatialConv = BasicConv(2, 1, 7, stride=1, padding=3, relu=False)
-            #self.spatialConv = BasicConv(2, 1, 3, stride=1, padding=1, relu=False) kernel3x3 not good
     def forward(self, x):
         if len(self.pool_types)==3:
             squeeze_channel1, squeeze_spatial1 = get_statistic_feature(x,self.pool_types[0])
@@ -199,27 +122,16 @@ class ChannelGate(nn.Module):
             squeeze_all = interleave3(squeeze_channel11,squeeze_channel22,squeeze_channel33)
     
             squeeze_weight = F.relu(self.mlp(squeeze_all).unsqueeze(2).unsqueeze(3) + F.sigmoid(squeeze_channel1*squeeze_channel2*squeeze_channel3))#_residualSE(OK best)
-            #squeeze_weight = self.mlp(squeeze_all).unsqueeze(2).unsqueeze(3) + F.sigmoid(squeeze_channel1*squeeze_channel2*squeeze_channel3)
             spatial_all = torch.cat((squeeze_spatial1, squeeze_spatial2,squeeze_spatial3), dim=1)
-            #spatial_weight = self.spatialConv(spatial_all)
             spatial_weight = self.spatialConv(spatial_all) + F.sigmoid(squeeze_spatial1*squeeze_spatial2*squeeze_spatial3)
-            #spatial_weight = self.spatialConv(spatial_all) + squeeze_spatial1*squeeze_spatial2*squeeze_spatial3
-            #weight_all = 1 + F.sigmoid(squeeze_weight * spatial_weight)
         if len(self.pool_types)==2:
             squeeze_channel1, squeeze_spatial1 = get_statistic_feature(x,self.pool_types[0])
             squeeze_channel2, squeeze_spatial2 = get_statistic_feature(x,self.pool_types[1])
-                        
             squeeze_channel11 = topk_channel(squeeze_channel1,self.num1)        
             squeeze_channel22 = topk_channel(squeeze_channel2,self.num2)
-            
-            
             squeeze_all = interleave(squeeze_channel11,squeeze_channel22)
-    
             squeeze_weight = F.relu(self.mlp(squeeze_all).unsqueeze(2).unsqueeze(3) + F.sigmoid(squeeze_channel1*squeeze_channel2))#_residualSE(OK best)
-            #squeeze_weight = self.mlp(squeeze_all).unsqueeze(2).unsqueeze(3) + F.sigmoid(squeeze_channel1*squeeze_channel2)
             spatial_all = torch.cat((squeeze_spatial1, squeeze_spatial2), dim=1)                        
-            #spatial_weight = self.spatialConv(spatial_all)
-            #spatial_weight = self.spatialConv(spatial_all) + squeeze_spatial1*squeeze_spatial2
             spatial_weight = self.spatialConv(spatial_all) + F.sigmoid(squeeze_spatial1*squeeze_spatial2)
         
         weight_all = 1 + F.sigmoid(squeeze_weight * spatial_weight)            
