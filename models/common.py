@@ -1,7 +1,7 @@
 import torch.nn
 
 ###
-#%% activation functions
+#%% activation functions 
 ###
 
 class Swish(torch.nn.Module):
