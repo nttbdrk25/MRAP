@@ -2,7 +2,7 @@
 """
 Created on Wed May 29 21:32:34 2024
 
-@author: tuann
+@author: tuann 
 """
 
 #!/usr/bin/env python3
