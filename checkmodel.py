@@ -2,7 +2,7 @@
 """
 Created on Sat Oct 22 15:31:57 2022
 
-@author: tuann
+@author: tuann 
 """
 from torchsummary import summary
 from models.mobilenet_with_MRAP import *
