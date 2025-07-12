@@ -3,7 +3,7 @@ import torch.nn as nn
 import torch.nn.functional as F
 from torch.nn.parameter import Parameter
 
-
+ 
 class LabelSmoothingCrossEntropy(nn.Module):
     """
     NLL loss with label smoothing.
