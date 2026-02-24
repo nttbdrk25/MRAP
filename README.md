@@ -39,8 +39,8 @@ If you use any materials, please cite the following relevant works.
 ```
 @article{SRAPAttNguyen25,
   author       = {Thanh Tuan Nguyen, Hoang Anh Pham, Thinh Vinh Le, and Thanh Phuong Nguyen},
-  title        = {Selected residual attentive patterns for lightweight networks in image classification},
-  journal      = {Pattern Recognition Letters},
-  note         = {Submitted 2025}
+  title        = {Boosting image recognition of lightweight networks via selective residual attentive patterns},
+  journal      = {IEEE Access},
+  note         = {Submitted 2026}
 }
 ```
