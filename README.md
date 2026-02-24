@@ -1,4 +1,4 @@
-# Selected residual attentive patterns for lightweight networks in image classification
+# Boosting image recognition of lightweight networks via selective residual attentive patterns
 **Abstract:**
 Modern deep networks often rely on attention modules which are still at a modest level
 due to using either one type of channel-wise patterns or an expensive combination of two
