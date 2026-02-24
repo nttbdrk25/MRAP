@@ -1,4 +1,4 @@
-# Boosting image recognition of lightweight networks via selective residual attentive patterns
+# Boosting lightweight CNN-based networks via selective residual attentive patterns for image recognition
 **Abstract:**
 Modern deep networks often rely on attention modules which are still at a modest level
 due to using either one type of channel-wise patterns or an expensive combination of two
@@ -39,7 +39,7 @@ If you use any materials, please cite the following relevant works.
 ```
 @article{SRAPAttNguyen25,
   author       = {Thanh Tuan Nguyen, Hoang Anh Pham, Thinh Vinh Le, and Thanh Phuong Nguyen},
-  title        = {Boosting image recognition of lightweight networks via selective residual attentive patterns},
+  title        = {Boosting lightweight CNN-based networks via selective residual attentive patterns for image recognition},
   journal      = {IEEE Access},
   note         = {Submitted 2026}
 }
